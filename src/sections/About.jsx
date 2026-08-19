@@ -1,135 +1,321 @@
-import { BookOpen, Brain, Code2, Lightbulb, Rocket, Server, Users } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import "./About.css";
 
-const highlights = [
+const technologyGroups = [
     {
-        icon: Code2,
-        title: "Clean Code",
-        description:
-            "Writing maintainable and scalable software that stands the test of time.",
+        title: "LANGUAGES",
+        technologies: [
+            {
+                name: "Java",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+            },
+            {
+                name: "C++",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg",
+            },
+            {
+                name: "C",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/c/c-original.svg",
+            },
+            {
+                name: "SQL",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+            },
+        ],
     },
+
     {
-        icon: Brain,
-        title: "Problem Solving",
-        description:
-            "Leveraging DSA principles to build efficient and optimized solutions.",
+        title: "BACKEND",
+        technologies: [
+            {
+                name: "Spring Boot",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/spring/spring-original.svg",
+            },
+            {
+                name: "Spring Security",
+                logo: "https://cdn.simpleicons.org/springsecurity/6DB33F",
+            },
+            {
+                name: "Hibernate",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hibernate/hibernate-original.svg",
+            },
+            {
+                name: "REST API",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastapi/fastapi-original.svg",
+            },
+            {
+                name: "JWT",
+                logo: "https://cdn.simpleicons.org/jsonwebtokens/000000",
+            },
+            {
+                name: "Swagger",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/swagger/swagger-original.svg",
+            },
+            {
+                name: "Servlets",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tomcat/tomcat-original.svg",
+            },
+            {
+                name: "JSP",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg",
+            },
+        ],
     },
+
     {
-        icon: Server,
-        title: "System Design",
-        description:
-            "Creating reliable backend architectures with performance and scalability in mind.",
+        title: "TESTING",
+        technologies: [
+            {
+                name: "JUnit",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/junit/junit-original.svg",
+            },
+            {
+                name: "Mockito",
+                logo: "https://raw.githubusercontent.com/mockito/mockito/main/config/javadoc/resources/org/mockito/logo.png",
+            },
+        ],
     },
+
     {
-        icon: BookOpen,
-        title: "Growth Mindset",
-        description:
-            "Continuously learning and adapting to emerging technologies and best practices.",
+        title: "FRONTEND",
+        technologies: [
+            {
+                name: "React",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg",
+            },
+            {
+                name: "HTML",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+            },
+            {
+                name: "CSS",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+            },
+            {
+                name: "Bootstrap",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+            },
+            {
+                name: "Tailwind CSS",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg",
+            },
+            {
+                name: "Thymeleaf",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/thymeleaf/thymeleaf-original.svg",
+            },
+        ],
+    },
+
+    {
+        title: "DATABASES",
+        technologies: [
+            {
+                name: "MySQL",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg",
+            },
+            {
+                name: "PostgreSQL",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+            },
+        ],
+    },
+
+    {
+        title: "TOOLS & CLOUD",
+        technologies: [
+            {
+                name: "Git",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+            },
+            {
+                name: "GitHub",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg",
+            },
+            {
+                name: "Maven",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/maven/maven-original.svg",
+            },
+            {
+                name: "Apache Tomcat",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tomcat/tomcat-original.svg",
+            },
+            {
+                name: "STS",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/eclipse/eclipse-original.svg",
+            },
+            {
+                name: "IntelliJ IDEA",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/intellij/intellij-original.svg",
+            },
+            {
+                name: "VS Code",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg",
+            },
+            {
+                name: "AWS",
+                logo: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg",
+            },
+        ],
     },
 ];
 
 export const About = () => {
+
+    const groupRefs = useRef([]);
+    const [visibleGroups, setVisibleGroups] = useState([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    const index = Number(entry.target.dataset.index);
+
+                    setVisibleGroups((prev) => {
+                        if (entry.isIntersecting) {
+                            // Add group when it enters
+                            if (!prev.includes(index)) {
+                                return [...prev, index];
+                            }
+                            return prev;
+                        }
+
+                        // Remove group when it leaves
+                        return prev.filter((item) => item !== index);
+                    });
+                });
+            },
+            {
+                threshold: 0.25,
+            }
+        );
+
+        groupRefs.current.forEach((group) => {
+            if (group) {
+                observer.observe(group);
+            }
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
-        <section id="about" className="py-32 relative overflow-hidden">
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 items-center">
-                    {/* Left Column */}
-                    <div className="space-y-8">
-                        <div className="animate-fade-in">
-                            <span className="text-secondary-foreground text-sm font-medium tracking-wider uppercase">
-                                WHO I AM
-                            </span>
-                        </div>
+        <section id="about" className="about-section">
 
-                        <h2 className="text-5xl md:text-6xl font-bold leading-tight">
-                            Building reliable
-                            <span className="text-primary"> backend systems</span>,
-                            <span className="font-serif italic font-normal text-white">
-                                one solution at a time.
-                            </span>
-                        </h2>
-
-                        <div className="space-y-4 text-muted-foreground animate-fade-in animation-delay-200">
-                            <p>
-                                I'm a passionate Java Developer and DSA enthusiast who enjoys solving
-                                complex problems and building scalable backend applications. My journey
-                                into software development began with curiosity about how systems work
-                                behind the scenes, and it has evolved into a strong foundation in Java
-                                and modern backend technologies.
-                            </p>
-
-                            <p>
-                                I specialize in Java, Spring Boot, Spring Data JPA, Hibernate, and
-                                RESTful API development. I enjoy designing efficient solutions,
-                                optimizing application performance, and writing clean, maintainable code
-                                that delivers real-world value.
-                            </p>
-
-                            <p>
-                                Beyond backend development, I actively practice Data Structures and
-                                Algorithms to strengthen my problem-solving abilities. I'm constantly
-                                exploring new technologies, building projects, and improving my skills
-                                to become a better software engineer every day.
-                            </p>
-                        </div>
-
-                        <div className="glass p-8 rounded-3xl">
-                            <p className="text-xl italic font-medium">
-                                "My mission is to build scalable and efficient software solutions
-                                while continuously growing as an engineer through learning,
-                                problem-solving, and real-world development."
-                            </p>
-                        </div>
-                    </div>
-
-                    {/* Right Column - Hilights */}
-                    <div className="grid sm:grid-cols-2 gap-6">
-                        {highlights.map((item, idx) => (
-                            <div
-                                key={idx}
-                                className="
-                                    group
-                                    glass
-                                    p-6
-                                    rounded-2xl
-                                    animate-fade-in
-                                    transition-all
-                                    duration-300
-                                    ease-out
-                                    hover:-translate-y-3
-                                    hover:scale-[1.02]
-                                    hover:shadow-[0_0_35px_rgba(32,178,166,0.15)]
-                                    hover:border-primary/30
-                                    "
-                                style={{ animationDelay: `${(idx + 1) * 100}ms` }}
-                            >
-                                <div
-                                    className="
-                                        w-12 h-12 rounded-xl bg-primary/10
-                                        flex items-center justify-center mb-4
-                                        transition-all duration-300
-                                        group-hover:bg-primary/20
-                                        group-hover:scale-110
-                                        group-hover:rotate-6
-                                    "
-                                >
-                                    <item.icon
-                                        className="
-            w-6 h-6 text-primary
-            transition-all duration-300
-            group-hover:scale-110
-        "
-                                    />
-                                </div>
-                                <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {item.description}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+            {/* Large background ABOUT */}
+            <div className="about-background-text" aria-hidden="true">
+                ABOUT
             </div>
 
+            <div className="about-container">
+
+                {/* ============================= */}
+                {/* INTRO */}
+                {/* ============================= */}
+
+                <div className="about-intro">
+
+                    <h3 className="about-main-heading">
+                        Hi, I'm{" "}
+                        <span className="about-highlight">
+                            Manjit
+                        </span>
+                        ,
+                    </h3>
+
+                    <h4 className="about-main-statement">
+                        I'm a{" "}
+                        <span>Java Developer</span>{" "}
+                        specializing in{" "}
+                        <span>Spring Boot</span>
+
+                        <span className="about-final-part">
+                            and <strong>Scalable Backend Applications.</strong>
+                        </span>
+                    </h4>
+
+                </div>
+
+
+                {/* ============================= */}
+                {/* DESCRIPTION */}
+                {/* ============================= */}
+
+                <div className="about-description-wrapper">
+
+                    <p className="about-description">
+                        I enjoy solving{" "}
+                        <span>
+                            Data Structure and Algorithmic problems
+                        </span>{" "}
+                        and building real-world projects that deliver
+                        meaningful user experiences.
+                    </p>
+
+                </div>
+
+
+                {/* ============================= */}
+                {/* TECH STACK */}
+                {/* ============================= */}
+
+                <div className="about-tech-section">
+
+                    <h4 className="about-tech-heading">
+                        TECH STACK
+                    </h4>
+
+                    <div className="about-tech-groups">
+
+                        {technologyGroups.map((group, groupIndex) => (
+                            <div
+                                ref={(element) => {
+                                    groupRefs.current[groupIndex] = element;
+                                }}
+                                data-index={groupIndex}
+                                className={`about-tech-group ${
+                                    visibleGroups.includes(groupIndex)
+                                        ? "about-tech-group-visible"
+                                        : ""
+                                }`}
+                                key={group.title}
+                            >
+
+                                <h5 className="about-tech-group-title">
+                                    {group.title}
+                                </h5>
+
+                                <div className="about-tech-grid">
+
+                                    {group.technologies.map((technology, index) => (
+                                        <div
+                                            className="about-tech-item"
+                                            key={technology.name}
+                                        >
+
+                                            <img
+                                                src={technology.logo}
+                                                alt={technology.name}
+                                                className="about-tech-logo"
+                                                loading="lazy"
+                                            />
+
+                                            <span className="about-tech-tooltip">
+                                                {technology.name}
+                                            </span>
+
+                                        </div>
+                                    ))}
+
+                                </div>
+
+                            </div>
+                        ))}
+
+                    </div>
+
+                </div>
+
+            </div>
 
         </section>
     );

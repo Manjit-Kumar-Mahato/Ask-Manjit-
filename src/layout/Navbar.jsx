@@ -6,7 +6,6 @@ const navLinks = [
   { href: "#projects", label: "PROJECTS" },
   { href: "#journey", label: "JOURNEY" },
   { href: "#skills", label: "SKILLS" },
-  { href: "#contact", label: "CONTACT" },
 ];
 
 export const Navbar = () => {
@@ -60,7 +59,7 @@ export const Navbar = () => {
           className="navbar-cta"
         >
           <span className="navbar-cta-text">
-            LET'S TALK
+            LET'S CONNECT
           </span>
 
           <span className="navbar-cta-icon">
@@ -106,7 +105,7 @@ export const Navbar = () => {
             }
             className="mobile-navbar-cta"
           >
-            LET'S TALK
+            LET'S CONNECT
             <ArrowUpRight size={17} />
           </button>
 
