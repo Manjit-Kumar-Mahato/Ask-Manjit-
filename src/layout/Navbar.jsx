@@ -11,16 +11,47 @@ const navLinks = [
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
+  const isProjectsPage = window.location.pathname === "/projects";
+
   const handleNavigation = (href) => {
     setIsMobileMenuOpen(false);
 
-    const element = document.querySelector(href);
+    /*
+     * If we are already on the home page,
+     * smoothly scroll to the section.
+     */
+    if (!isProjectsPage) {
+      const element = document.querySelector(href);
 
-    if (element) {
-      element.scrollIntoView({
-        behavior: "smooth",
-      });
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+
+      return;
     }
+
+    /*
+     * If we are on /projects,
+     * navigate back to the home page
+     * and directly open the requested section.
+     */
+    window.location.href = `/${href}`;
+  };
+
+  const handleLogoClick = () => {
+    setIsMobileMenuOpen(false);
+
+    if (isProjectsPage) {
+      window.location.href = "/";
+      return;
+    }
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   return (
@@ -29,33 +60,36 @@ export const Navbar = () => {
 
         {/* Logo */}
         <button
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            })
-          }
+          onClick={handleLogoClick}
           className="navbar-logo"
         >
           MKM<span>.</span>
         </button>
 
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-8">
+
           {navLinks.map((link) => (
             <button
               key={link.href}
-              onClick={() => handleNavigation(link.href)}
+              onClick={() =>
+                handleNavigation(link.href)
+              }
               className="navbar-link"
             >
               {link.label}
             </button>
           ))}
+
         </div>
+
 
         {/* Desktop CTA */}
         <button
-          onClick={() => handleNavigation("#contact")}
+          onClick={() =>
+            handleNavigation("#contact")
+          }
           className="navbar-cta"
         >
           <span className="navbar-cta-text">
@@ -66,6 +100,7 @@ export const Navbar = () => {
             <ArrowUpRight size={15} />
           </span>
         </button>
+
 
         {/* Mobile Menu Button */}
         <button
@@ -81,7 +116,9 @@ export const Navbar = () => {
             <Menu size={22} />
           )}
         </button>
+
       </nav>
+
 
       {/* Mobile Navigation */}
       {isMobileMenuOpen && (
@@ -99,6 +136,7 @@ export const Navbar = () => {
             </button>
           ))}
 
+
           <button
             onClick={() =>
               handleNavigation("#contact")
@@ -106,11 +144,13 @@ export const Navbar = () => {
             className="mobile-navbar-cta"
           >
             LET'S CONNECT
+
             <ArrowUpRight size={17} />
           </button>
 
         </div>
       )}
+
     </header>
   );
 };
