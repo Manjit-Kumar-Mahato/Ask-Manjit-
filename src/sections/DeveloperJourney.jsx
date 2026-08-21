@@ -162,7 +162,7 @@ export const DeveloperJourney = () => {
                             leading-[0.8]
                         "
                     >
-                        Journey
+                        My
 
                         <span
                             className="
@@ -177,7 +177,7 @@ export const DeveloperJourney = () => {
                                 tracking-[-0.065em]
                             "
                         >
-                            Milestone.
+                            Journey.
                         </span>
                     </h2>
 
