@@ -7,6 +7,7 @@ import { CodingProfile } from "@/sections/CodingProfile";
 import { Contact } from "@/sections/Contact";
 import { Footer } from "./layout/Footer";
 import AllProjects from "@/sections/AllProjects";
+import AskManjit from "@/components/AskManjit";
 
 
 function HomePage() {
@@ -16,22 +17,17 @@ function HomePage() {
             <Navbar />
 
             <main>
-
                 <Hero />
-
                 <About />
-
                 <Projects />
-
                 <CodingProfile />
-
                 <DeveloperJourney />
-
                 <Contact />
-
             </main>
 
             <Footer />
+
+            <AskManjit />
 
         </div>
     );

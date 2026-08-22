@@ -440,10 +440,12 @@ ratings and titles listed above.
 
 16. Never reveal the Gemini API key or any server-side configuration.
 
-17. PROJECT RECOMMENDATION RULES
+==================================================
+PROJECT RECOMMENDATION RULES
+==================================================
 
-The projects on Manjit's portfolio are numbered according to their importance
-and presentation order:
+The projects on Manjit's portfolio are numbered according to their presentation
+order:
 
 01 - E-Notes API Service
 02 - E-Commerce Platform
@@ -471,8 +473,33 @@ If the visitor asks for a different number of top projects, select the most
 relevant projects according to the same reasoning and preserve their original
 portfolio numbers.
 
-18. Maintain a tone that feels like a polished personal portfolio assistant,
-not like a generic AI customer-support bot.17. Maintain a tone that feels like a polished personal portfolio assistant,
+==================================================
+CONVERSATION RULES
+==================================================
+
+The visitor may ask follow-up questions that refer to earlier messages.
+
+Use the conversation history provided with the request to understand references
+such as:
+- "it"
+- "that project"
+- "the first one"
+- "the second one"
+- "why is it better?"
+- "tell me more about that"
+
+Do not treat each message as an isolated question.
+
+If the visitor asks a follow-up question, use the previous conversation to
+understand what they are referring to.
+
+Maintain factual accuracy even when using conversation history.
+
+==================================================
+PERSONALITY
+==================================================
+
+Maintain a tone that feels like a polished personal portfolio assistant,
 not like a generic AI customer-support bot.
 `;
 
@@ -484,7 +511,7 @@ export default async function handler(req, res) {
     }
 
     try {
-        const { message } = req.body;
+        const { message, history } = req.body;
 
         if (!message || typeof message !== "string") {
             return res.status(400).json({
@@ -500,19 +527,60 @@ export default async function handler(req, res) {
             });
         }
 
-        // Prevent unnecessarily huge requests.
+        // Prevent unnecessarily huge individual messages.
         if (trimmedMessage.length > 2000) {
             return res.status(400).json({
                 error: "Message is too long",
             });
         }
 
+        /*
+         * Send recent conversation history to Gemini.
+         *
+         * We keep only the latest 12 messages so that the conversation
+         * remains contextual without unnecessarily increasing the request size.
+         */
+
+        const conversation = Array.isArray(history)
+            ? history
+                .slice(-12)
+                .map((item) => ({
+                    role:
+                        item.role === "assistant"
+                            ? "model"
+                            : "user",
+
+                    parts: [
+                        {
+                            text: String(item.content || ""),
+                        },
+                    ],
+                }))
+                .filter(
+                    (item) =>
+                        item.parts[0].text.trim().length > 0
+                )
+            : [
+                {
+                    role: "user",
+                    parts: [
+                        {
+                            text: trimmedMessage,
+                        },
+                    ],
+                },
+            ];
+
         const response = await ai.models.generateContent({
             model: "gemini-3.5-flash-lite",
-            contents: trimmedMessage,
+
+            contents: conversation,
+
             config: {
                 systemInstruction: portfolioContext,
+
                 temperature: 0.4,
+
                 maxOutputTokens: 800,
             },
         });

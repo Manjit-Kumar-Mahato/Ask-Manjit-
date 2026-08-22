@@ -1161,3 +1161,18 @@
   }
 
 }
+
+@keyframes askManjitFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-14px);
+    }
+}
+
+.ask-manjit-float {
+    animation: askManjitFloat 2.6s ease-in-out infinite;
+}
