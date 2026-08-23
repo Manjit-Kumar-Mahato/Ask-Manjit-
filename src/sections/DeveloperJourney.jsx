@@ -1,24 +1,27 @@
 const timeline = [
     {
         period: "2026 — Present",
-        role: "Backend Development & System Design",
+        role: "Backend Engineering & System Design",
         description:
-            "Currently focused on building scalable backend applications using Spring Boot. Learning REST APIs, Spring Security, JWT authentication, database optimization, AWS deployment, and system design concepts.",
+            "Focused on building secure and scalable backend applications with Java and Spring Boot. Working with REST APIs, Spring Security, JWT authentication, Spring Data JPA, Hibernate, MySQL, PostgreSQL, API design, and system design fundamentals.",
         technologies: [
             "Java",
             "Spring Boot",
             "Spring Security",
+            "JWT",
+            "REST APIs",
+            "Spring Data JPA",
+            "Hibernate",
             "MySQL",
-            "AWS",
-            "REST API",
         ],
         current: true,
     },
+
     {
         period: "2024 — Present",
         role: "Competitive Programming",
         description:
-            "Actively solving Data Structures and Algorithms problems. Achieved 1800+ rating on LeetCode, 1500+ on Codeforces, and 1500+ on CodeChef while strengthening problem-solving skills.",
+            "Continuously strengthening Data Structures and Algorithms through competitive programming and regular problem solving. Currently rated 1900+ on LeetCode, 1500+ on Codeforces, and 1500+ on CodeChef.",
         technologies: [
             "Java",
             "DSA",
@@ -29,30 +32,35 @@ const timeline = [
         ],
         current: true,
     },
+
     {
-        period: "2025-2026",
-        role: "Full-Stack Project Development",
+        period: "2025 — 2026",
+        role: "Spring Boot Application Development",
         description:
-            "Built multiple real-world applications including an E-Commerce Platform and E-Notes Application. Implemented authentication, authorization, CRUD operations, email verification, and responsive user interfaces.",
+            "Built multiple complete applications using Spring Boot, Thymeleaf, Spring Security, Hibernate, and MySQL. Worked on authentication, authorization, CRUD operations, pagination, database relationships, and responsive application interfaces.",
         technologies: [
             "Spring Boot",
+            "Spring Security",
             "Thymeleaf",
-            "Bootstrap",
-            "MySQL",
             "Hibernate",
+            "MySQL",
+            "Bootstrap",
         ],
         current: false,
     },
+
     {
         period: "2024 — 2025",
-        role: "Backend Development Foundations",
+        role: "Java Backend Foundations",
         description:
-            "Learned core Java, OOP, JDBC, Servlets, JSP, Maven, and database management. Built projects such as Hospital Management System and Online Expense Tracker.",
+            "Built a strong foundation in Java backend development through OOP, JDBC, Servlets, JSP, Hibernate, Maven, MySQL, and Apache Tomcat. Developed projects including a Hospital Management System and Online Expense Tracker.",
         technologies: [
             "Java",
+            "OOP",
             "JDBC",
             "Servlets",
             "JSP",
+            "Hibernate",
             "MySQL",
             "Maven",
         ],
@@ -63,10 +71,10 @@ const timeline = [
         period: "2024",
         role: "Programming Foundations",
         description:
-            "Began my programming journey as an Information Technology student at Jadavpur University. Explored C, Java, Git, GitHub, and web development fundamentals while building a strong computer science foundation.",
+            "Started my programming journey as an Information Technology student at Jadavpur University. Explored Java, C, web fundamentals, Git, and GitHub while building the foundation for backend development and competitive programming.",
         technologies: [
-            "C",
             "Java",
+            "C",
             "Git",
             "GitHub",
             "HTML",
@@ -76,99 +84,402 @@ const timeline = [
     },
 ];
 
+
 export const DeveloperJourney = () => {
     return (
-        <section id="journey" className="py-32 relative overflow-hidden">
+        <section
+            id="journey"
+            className="
+                relative
+                overflow-hidden
+                py-28
+                md:py-32
+            "
+        >
+
+            {/* =====================================================
+                BACKGROUND GLOW
+            ====================================================== */}
+
             <div
-                className="absolute top-1/2 left-1/4 w-96
-                    h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2"
+                className="
+                    absolute
+                    left-1/4
+                    top-1/3
+                    w-96
+                    h-96
+                    rounded-full
+                    bg-primary/5
+                    blur-3xl
+                    pointer-events-none
+                "
             />
 
-            <div className="container mx-auto px-6 relative z-10">
-                {/* Section Header */}
-                <div className="max-w-4xl mb-16">
-                    <span
-                        className="text-primary text-sm font-medium tracking-wider uppercase animate-fade-in"
-                    >
-                        Developer Journey
-                    </span>
+            <div
+                className="
+                    absolute
+                    right-0
+                    bottom-0
+                    w-80
+                    h-80
+                    rounded-full
+                    bg-primary/[0.035]
+                    blur-3xl
+                    pointer-events-none
+                "
+            />
+
+
+            {/* =====================================================
+                MAIN CONTAINER
+            ====================================================== */}
+
+            <div
+                className="
+                    container
+                    mx-auto
+                    px-6
+                    relative
+                    z-10
+                "
+            >
+
+
+                {/* =================================================
+                    HEADER
+                ================================================== */}
+
+                <div className="mb-20">
 
                     <h2
-                        className="text-4xl md:text-6xl font-bold mt-4 mb-6 animate-fade-in animation-delay-100"
+                        className="
+                            text-5xl
+                            sm:text-6xl
+                            md:text-7xl
+                            lg:text-[7rem]
+                            font-normal
+                            tracking-[-0.07em]
+                            leading-[0.8]
+                        "
                     >
-                        Algorithms. Applications.{" "}
-                        <span className="font-serif italic font-normal text-primary">
-                            Growth.
+                        My
+
+                        <span
+                            className="
+                                block
+                                ml-8
+                                md:ml-16
+                                mt-4
+                                font-serif
+                                italic
+                                font-normal
+                                text-primary
+                                tracking-[-0.065em]
+                            "
+                        >
+                            Journey.
                         </span>
                     </h2>
 
-                    <p
-                        className="text-muted-foreground text-lg max-w-3xl animate-fade-in animation-delay-200"
+
+                    {/* Small line + label */}
+
+                    <div
+                        className="
+                            mt-12
+                            flex
+                            items-center
+                            gap-5
+                        "
                     >
-                        My journey combines competitive programming and backend development—
-                        sharpening problem-solving skills through DSA while building scalable
-                        applications using Java, Spring Boot, and modern web technologies.
-                    </p>
+
+                        <div
+                            className="
+                                w-24
+                                h-px
+                                bg-primary
+                            "
+                        />
+
+                        <span
+                            className="
+                                text-[10px]
+                                md:text-xs
+                                uppercase
+                                tracking-[0.45em]
+                                text-muted-foreground
+                                font-medium
+                            "
+                        >
+                            Professional Path that made an Impact
+                        </span>
+
+                    </div>
+
                 </div>
 
-                
 
-                {/* Timeline */}
+                {/* =================================================
+                        TIMELINE
+                ================================================== */}
+
                 <div className="relative">
-                    <div className="timeline-glow absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-primary/70 via-primary/30 to-transparent md:-translate-x-1/2 shadow-[0_0_25px_rgba(32,178,166,0.8)]" />
 
-                    {/* Experience Items */}
-                    <div className="space-y-12">
+                    {/* Timeline line */}
+                    <div
+                        className="
+                            absolute
+                            left-0
+                            md:left-1/2
+                            top-0
+                            bottom-0
+                            w-[2px]
+                            bg-gradient-to-b
+                            from-primary/70
+                            via-primary/30
+                            to-transparent
+                            md:-translate-x-1/2
+                            shadow-[0_0_22px_rgba(32,178,166,0.45)]
+                        "
+                    />
+
+                    <div className="space-y-12 md:space-y-16">
+
                         {timeline.map((exp, idx) => (
+
                             <div
                                 key={idx}
-                                className="relative grid md:grid-cols-2 gap-8 animate-fade-in"
-                                style={{ animationDelay: `${(idx + 1) * 150}ms` }}
+                                className="relative grid md:grid-cols-2 gap-8"
                             >
+
                                 {/* Timeline Dot */}
-                                <div className="absolute left-0 md:left-1/2 top-0 w-3 h-3 bg-primary rounded-full -translate-x-1/2 ring-4 ring-background z-10">
+                                <div
+                                    className="
+                                        absolute
+                                        left-0
+                                        md:left-1/2
+                                        top-7
+                                        w-4
+                                        h-4
+                                        rounded-full
+                                        bg-primary
+                                        -translate-x-1/2
+                                        ring-4
+                                        ring-background
+                                        z-20
+                                        shadow-[0_0_15px_rgba(32,178,166,0.55)]
+                                    "
+                                >
                                     {exp.current && (
-                                        <span className="absolute inset-0 rounded-full bg-primary animate-ping opacity-75" />
+                                        <span
+                                            className="
+                                                absolute
+                                                inset-0
+                                                rounded-full
+                                                bg-primary
+                                                animate-ping
+                                                opacity-50
+                                            "
+                                        />
                                     )}
                                 </div>
 
-                                {/* Content */}
+
+                                {/* =================================================
+                                    CARD
+
+                                    First card = RIGHT
+                                    Second card = LEFT
+                                    Third card = RIGHT
+                                    Fourth card = LEFT
+                                ================================================== */}
+
                                 <div
-                                    className={`pl-8 md:pl-0 ${idx % 2 === 0
-                                        ? "md:pr-16 md:text-right"
-                                        : "md:col-start-2 md:pl-16"
-                                        }`}
+                                    className={`
+                                        pl-8
+                                        md:pl-0
+
+                                        ${
+                                            idx % 2 === 0
+                                                ? "md:col-start-2 md:pl-16"
+                                                : "md:col-start-1 md:pr-16 md:text-right"
+                                        }
+                                    `}
                                 >
+
                                     <div
-                                        className={`glass p-6 rounded-2xl border border-primary/30 hover:border-primary/50 transition-all duration-500`}
+                                        className="
+                                            group
+                                            relative
+                                            overflow-hidden
+
+                                            glass
+                                            rounded-2xl
+                                            border
+                                            border-primary/20
+
+                                            p-6
+                                            md:p-7
+
+                                            transition-all
+                                            duration-500
+                                            ease-out
+
+                                            hover:-translate-y-2
+                                            hover:scale-[1.015]
+                                            hover:border-primary/50
+
+                                            hover:shadow-[0_20px_60px_rgba(32,178,166,0.14)]
+                                        "
                                     >
-                                        <span className="text-sm text-primary font-medium">
+
+                                        {/* Hover glow */}
+                                        <div
+                                            className="
+                                                pointer-events-none
+                                                absolute
+                                                -top-24
+                                                -right-24
+                                                w-56
+                                                h-56
+                                                rounded-full
+                                                bg-primary/[0.06]
+                                                blur-3xl
+                                                opacity-0
+                                                group-hover:opacity-100
+                                                transition-opacity
+                                                duration-500
+                                            "
+                                        />
+
+
+                                        {/* Top accent */}
+                                        <div
+                                            className={`
+                                                absolute
+                                                top-0
+                                                ${
+                                                    idx % 2 === 0
+                                                        ? "left-0"
+                                                        : "right-0"
+                                                }
+                                                h-[2px]
+                                                w-0
+                                                bg-primary
+                                                group-hover:w-full
+                                                transition-all
+                                                duration-700
+                                            `}
+                                        />
+
+
+                                        {/* Period */}
+                                        <span
+                                            className="
+                                                relative
+                                                z-10
+                                                text-sm
+                                                text-primary
+                                                font-medium
+                                            "
+                                        >
                                             {exp.period}
                                         </span>
-                                        <h3 className="text-xl font-semibold mt-2">{exp.role}</h3>
-                                        <p className="text-sm text-muted-foreground mt-4">
+
+
+                                        {/* Role */}
+                                        <h3
+                                            className="
+                                                relative
+                                                z-10
+                                                mt-2
+                                                text-xl
+                                                md:text-2xl
+                                                font-semibold
+                                                transition-transform
+                                                duration-500
+                                                group-hover:translate-x-1
+                                            "
+                                        >
+                                            {exp.role}
+                                        </h3>
+
+
+                                        {/* Description */}
+                                        <p
+                                            className="
+                                                relative
+                                                z-10
+                                                mt-4
+                                                text-sm
+                                                leading-7
+                                                text-muted-foreground
+                                            "
+                                        >
                                             {exp.description}
                                         </p>
+
+
+                                        {/* Technologies */}
                                         <div
-                                            className={`flex flex-wrap gap-2 mt-4 ${idx % 2 === 0 ? "md:justify-end" : ""
-                                                }`}
+                                            className={`
+                                                relative
+                                                z-10
+                                                flex
+                                                flex-wrap
+                                                gap-2
+                                                mt-5
+
+                                                ${
+                                                    idx % 2 !== 0
+                                                        ? "md:justify-end"
+                                                        : ""
+                                                }
+                                            `}
                                         >
-                                            {exp.technologies.map((tech, techIdx) => (
-                                                <span
-                                                    key={techIdx}
-                                                    className="px-3 py-1 bg-surface text-xs rounded-full text-muted-foreground"
-                                                >
-                                                    {tech}
-                                                </span>
-                                            ))}
+                                            {exp.technologies.map(
+                                                (tech, techIdx) => (
+                                                    <span
+                                                        key={techIdx}
+                                                        className="
+                                                            px-3
+                                                            py-1.5
+                                                            rounded-full
+
+                                                            bg-surface
+                                                            text-xs
+                                                            text-muted-foreground
+
+                                                            border
+                                                            border-transparent
+
+                                                            transition-all
+                                                            duration-300
+
+                                                            group-hover:border-primary/20
+                                                            group-hover:text-primary
+                                                        "
+                                                    >
+                                                        {tech}
+                                                    </span>
+                                                )
+                                            )}
                                         </div>
+
                                     </div>
+
                                 </div>
+
                             </div>
+
                         ))}
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
     );
 };

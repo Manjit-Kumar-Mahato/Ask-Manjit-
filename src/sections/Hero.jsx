@@ -1,220 +1,297 @@
-import { Button } from "@/components/Button";
-import { ArrowRight, Download } from "lucide-react";
+import {
+  ArrowDownToLine,
+  ArrowUpRight,
+} from "lucide-react";
+
+import { useEffect, useState } from "react";
+
 import { FaGithub, FaLinkedin } from "react-icons/fa";
-import { AnimatedBorderButton } from "@/components/AnimatedBorderButton";
 
-const skills = [
-    "Java",
-    "Spring Boot",
-    "Spring Data JPA",
-    "Hibernate",
-    "REST APIs",
-    "MySQL",
-    "Data Structures",
-    "Algorithms",
-    "PostgreSQL",
-    "Spring MVC",
-    "Thymeleaf",
-    "JDBC",
-    "Servlets",
-    "JSP",
-    "Maven",
-    "Git",
-    "GitHub",
-    "JUnit",
-    "Tomcat",
-    "AWS",
-    "OOP",
-    "HTML",
-    "CSS",
-    "JavaScript",
-    "React",
-];
+const Hero = () => {
+  const [role, setRole] = useState("Java Developer");
+  const [typingKey, setTypingKey] = useState(0);
 
-const highlightedSkills = [
-    "Java",
-    "Spring Boot",
-    "Hibernate",
-    "Spring Data JPA",
-    "REST APIs",
-    "MySQL",
-    "Data Structures",
-    "Algorithms",
-];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRole((prev) =>
+        prev === "Java Developer"
+          ? "DSA Enthusiast"
+          : "Java Developer"
+      );
 
+      setTypingKey((prev) => prev + 1);
+    }, 4000);
 
-export const Hero = () => {
-    return (
-        <section className="relative min-h-screen flex items-center overflow-hidden">
-            {/* Bg */}
-            <div className="absolute inset-0">
-                <img
-                    src="/hero-bg.jpg"
-                    alt="Hero image"
-                    className="w-full h-full object-cover opacity-40"
+    return () => clearInterval(interval);
+  }, []);
+
+  const rotatingText =
+    "ENGINEERING • BUILDING • AI • BACKEND • JAVA • SPRING BOOT • ";
+
+  return (
+    <section
+      id="home"
+      className="hero-section"
+    >
+      {/* ========================= */}
+      {/* BACKGROUND */}
+      {/* ========================= */}
+
+      <div className="hero-grid" />
+
+      <div className="hero-blue-glow" />
+
+      <div className="hero-container">
+
+        {/* ========================= */}
+        {/* MAIN HERO */}
+        {/* ========================= */}
+
+        <div className="hero-main">
+
+          {/* ========================= */}
+          {/* LEFT SIDE */}
+          {/* ========================= */}
+
+          <div className="hero-left">
+
+            {/* Role */}
+            <div className="hero-role">
+                <span className="hero-role-dot" />
+
+                <span
+                    key={typingKey}
+                    className="typing-text"
+                >
+                    {role}
+                </span>
+            </div>
+
+            {/* ========================= */}
+            {/* NAME */}
+            {/* ========================= */}
+
+            <h1 className="hero-title">
+
+              {/* MANJIT */}
+              <span className="hero-name-first">
+                MANJIT
+              </span>
+
+              {/* KUMAR + MAHATO */}
+              <span className="hero-name-second">
+
+                <span className="hero-kumar">
+                  Kumar
+                </span>
+
+                <span className="hero-mahato">
+                  MAHATO
+                </span>
+
+              </span>
+
+            </h1>
+
+            {/* ========================= */}
+            {/* DESCRIPTION */}
+            {/* ========================= */}
+
+            <div className="hero-description">
+
+              <p>
+                Building{" "}
+                <span className="description-dark">
+                  scalable backend systems
+                </span>
+              </p>
+
+              <p>
+                with{" "}
+                <span>
+                  Java, Spring Boot & AI.
+                </span>
+              </p>
+
+            </div>
+
+            {/* ========================= */}
+            {/* BUTTONS */}
+            {/* ========================= */}
+
+            <div className="hero-buttons">
+
+              {/* Explore Projects */}
+              <a
+                href="#projects"
+                className="hero-primary-button group"
+              >
+                <span>
+                  EXPLORE PROJECTS
+                </span>
+
+                <ArrowUpRight
+                  size={20}
+                  className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
                 />
-                <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-background/80 to-background" />
+              </a>
+
+              {/* Download Resume */}
+              <a
+                href="/Manjit_Kumar_Mahato_Resume.pdf"
+                download
+                className="hero-secondary-button group"
+              >
+                <span>
+                  DOWNLOAD RESUME
+                </span>
+
+                <ArrowDownToLine
+                  size={20}
+                  className="transition-transform duration-300 group-hover:translate-y-1"
+                />
+              </a>
+
             </div>
 
-            {/* Green Dots */}
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                {[...Array(30)].map((_, i) => (
-                    <div
-                        className="absolute w-1.5 h-1.5 rounded-full opacity-60"
-                        style={{
-                            backgroundColor: "#20B2A6",
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            animation: `slow-drift ${15 + Math.random() * 20
-                                }s ease-in-out infinite`,
-                            animationDelay: `${Math.random() * 5}s`,
-                        }}
-                    />
-                ))}
+          </div>
+
+          {/* ========================= */}
+          {/* RIGHT SIDE */}
+          {/* ========================= */}
+
+          <div className="hero-right">
+
+            {/* Rotating Badge */}
+            <div className="rotating-badge">
+
+              {/* Rotating Text */}
+              <svg
+                viewBox="0 0 400 400"
+                className="rotating-text-svg"
+                aria-hidden="true"
+              >
+                <defs>
+
+                  <path
+                    id="hero-circle-path"
+                    d="
+                      M 200,200
+                      m -125,0
+                      a 125,125 0 1,1 250,0
+                      a 125,125 0 1,1 -250,0
+                    "
+                  />
+
+                </defs>
+
+                <text>
+                  <textPath
+                    href="#hero-circle-path"
+                    startOffset="0%"
+                  >
+                    {rotatingText}
+                  </textPath>
+                </text>
+
+              </svg>
+
+              {/* Center Circle */}
+              <div className="badge-center">
+
+                <span>
+                  &lt;/&gt;
+                </span>
+
+              </div>
+
             </div>
 
-            {/* Content */}
-            <div className="container mx-auto px-6 pt-32 pb-20 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-12 items-center">
-                    {/* Left Column - Text Content */}
-                    <div className="space-y-8">
-                        <div className="animate-fade-in">
-                            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm text-primary">
-                                <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-                                Java Developer • Spring Boot • DSA Enthusiast
-                            </span>
-                        </div>
+            {/* ========================= */}
+            {/* SOCIAL LINKS */}
+            {/* ========================= */}
 
-                        {/* Headline */}
-                        <div className="space-y-4">
-                            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight animate-fade-in animation-delay-100">
-                                Building <span className="text-primary glow-text">scalable</span>
-                                <br />
-                                backend solutions
-                                <br />
-                                <span className="font-serif italic font-normal text-white">
-                                    with clean code.
-                                </span>
-                            </h1>
-                            <p className="text-lg text-muted-foreground max-w-lg animate-fade-in animation-delay-200">
-                                Hi, I'm Manjit Kumar Mahato, a Java Developer specializing in
-                                Spring Boot and Scalable Backend Applications. I enjoy solving
-                                Data Structure and Algorithmic problems and building real-world
-                                projects that deliver meaningful user experiences.
-                            </p>
-                        </div>
+            <div className="hero-socials">
 
-                        {/* CTAs */}
-                        <div className="flex flex-wrap gap-4 animate-fade-in animation-delay-300">
-                            <a href="#contact">
-                                <Button size="lg">
-                                    Contact Me <ArrowRight className="w-5 h-5" />
-                                </Button>
-                            </a>
-                            <a
-                                href="/Manjit_Kumar_Mahato_Resume.pdf"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                            >
-                                <AnimatedBorderButton>
-                                    <Download className="w-5 h-5" />
-                                    Download Resume
-                                </AnimatedBorderButton>
-                            </a>
-                        </div>
+              <a
+                href="https://github.com/Manjit-Kumar-Mahato"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-social"
+                aria-label="GitHub"
+              >
+                <FaGithub size={22} />
+              </a>
 
-                        {/* Social Links */}
-                        <div className="flex items-center gap-4 animate-fade-in animation-delay-400">
-                            <span className="text-sm text-muted-foreground">Follow me: </span>
-                            {[
-                                { icon: FaGithub, href: "https://github.com/Manjit-Kumar-Mahato" },
-                                { icon: FaLinkedin, href: "https://www.linkedin.com/in/manjit-mahato-a92578338/" },
-                            ].map((social, idx) => (
-                                <a
-                                    key={idx}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="p-2 rounded-full glass hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                                >
-                                    <social.icon className="w-5 h-5" />
-                                </a>
-                            ))}
-                        </div>
+              <a
+                href="https://www.linkedin.com/in/manjit-mahato-a92578338/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-social"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin size={22} />
+              </a>
 
-                    </div>
-
-
-                    {/* Right Column - Profile Image */}
-                    <div className="relative animate-fade-in animation-delay-300">
-                        {/* Profile Image */}
-                        <div className="relative max-w-md mx-auto">
-                            <div
-                                className="absolute inset-0 
-                                rounded-2xl bg-gradient-to-br 
-                                from-primary/30 via-transparent 
-                                to-primary/10 blur-2xl animate-pulse"
-                            />
-                            <div className="relative glass rounded-3xl p-2 glow-border">
-                                <img
-                                    src="/profile-photo.jpg"
-                                    alt="Manjit Kumar Mahato"
-                                    className="w-full aspect-[4/5] object-cover rounded-2xl"
-                                />
-
-                                {/* Floating Badge */}
-                                <div className="absolute -bottom-4 -right-4 glass rounded-xl px-4 py-3 animate-float">
-                                    <div className="flex items-center gap-3">
-                                        <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                                        <span className="text-sm font-medium">
-                                            Available for work
-                                        </span>
-                                    </div>
-                                </div>
-                                <div className="absolute -top-8 -left-8 glass rounded-2xl px-4 py-3 animate-float animation-delay-500">
-                                    <div className="text-2xl font-bold text-primary">Java Developer</div>
-                                    <div className="text-xs text-muted-foreground">
-                                        Spring Boot • DSA
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                {/* Skills Section */}
-                <div className="mt-20 animate-fade-in animation-delay-600">
-                    <p className="text-sm text-muted-foreground mb-8 text-center uppercase tracking-wider">
-                        Technologies I work with
-                    </p>
-
-                    <div className="flex flex-wrap justify-center gap-4 max-w-5xl mx-auto">
-                        {skills.map((skill, idx) => (
-                            <div
-                                key={idx}
-                                className={`
-                                    glass
-                                    px-4 py-2
-                                    rounded-2xl
-                                    text-sm md:text-base
-                                    font-medium
-                                    transition-all duration-300
-                                    hover:-translate-y-1
-                                    hover:shadow-[0_0_25px_rgba(32,178,166,0.15)]
-
-                                    ${highlightedSkills.includes(skill)
-                                        ? "text-primary border border-primary/30 glow-border"
-                                        : "text-muted-foreground hover:text-foreground"
-                                    }
-`}
-                            >
-                                {skill}
-                            </div>
-                        ))}
-                    </div>
-                </div>
             </div>
-        </section >
-    );
-};  
+
+          </div>
+
+        </div>
+
+        {/* ========================= */}
+        {/* INFORMATION BAR */}
+        {/* ========================= */}
+
+        <div className="hero-info-grid">
+
+          {/* Available */}
+          <div className="hero-info">
+
+            <div className="hero-info-heading">
+              <span className="info-dot" />
+              AVAILABLE FOR
+            </div>
+
+            <strong>
+              INTERNSHIPS
+            </strong>
+
+          </div>
+
+          {/* Specialization */}
+          <div className="hero-info">
+
+            <div className="hero-info-heading">
+              <span className="info-dot" />
+              SPECIALIZATION
+            </div>
+
+            <strong>
+              JAVA / SPRING / DSA
+            </strong>
+
+          </div>
+
+          {/* Location */}
+          <div className="hero-info">
+
+            <div className="hero-info-heading">
+              <span className="info-dot" />
+              BASED IN
+            </div>
+
+            <strong>
+              KOLKATA, INDIA
+            </strong>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
